@@ -1,0 +1,34 @@
+{% extends "../template.html" %}
+
+{% block styles %}
+  <link rel="stylesheet" type="text/css" href="/static/game/spinner.css">
+{% end %}
+
+{% block js %}
+  window.GameInstance = new Game();
+{% end %}
+
+{% block content %}
+  <div class="sidebar sidebar-left">
+    <div id="settings" class="settings"></div>
+  </div>
+  <div class="game">
+    <div id="pause">
+      The game was paused to prevent a size warning.
+      <div class="spinner">
+        <div class="double-bounce1"></div>
+        <div class="double-bounce2"></div>
+      </div>
+      Press any key to continue.
+    </div>
+    <canvas id="canvas"></canvas>
+  </div>
+  <div class="sidebar sidebar-right">
+    <div class="page-controls">
+      <button tabindex="-1" class="reload go-back" id="backbutton">Go Back</button>
+      <button tabindex="-1" class="reload reload-emu" id="resetbutton">Reset</button>
+      <button tabindex="-1" class="reload" id="reloadbutton">Reload page</button>
+    </div>
+  </div>
+  <div id="toast-container"></div>
+{% end %}
