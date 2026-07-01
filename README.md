@@ -1,5 +1,9 @@
 # Switch NDS Emulator (Switch 1 & Switch 2)
 
+## Demo
+
+![Demo GIF](demo.gif)
+
 ## Overview
 
 This project is a Nintendo DS emulator running on Nintendo Switch (all models including Switch Lite and OLED) as well as Switch 2.
@@ -73,3 +77,6 @@ pip install -r requirements.txt
 
 chmod u+x run.sh
 ./run.sh
+```
+
+# To access it from a Nintendo Switch browser (via Switchbru or DNS redirect setup), use: http://[PC_IP_ADDRESS]:8889
