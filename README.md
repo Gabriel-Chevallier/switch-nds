@@ -1,57 +1,75 @@
-# Switch 2 (and switch 1) NDS Emulator
+# Switch NDS Emulator (Switch 1 & Switch 2)
 
-## Origins
-This project is based on [switch-gba](https://github.com/itsbjoern/switch-gba), it uses Desmume instead of mGBA.
+## Overview
 
-It's a working progress NDS emulator for the Nintendo Switch 2 (and any Nintendo Switch 1 model even lite or OLED).
+This project is a Nintendo DS emulator running on Nintendo Switch (all models including Switch Lite and OLED) as well as Switch 2.
 
-<details>
-  <summary>Information / How it's done</summary>
-  This project makes use of the Switch browser that comes up when trying to verify / sign in with certain DNS providers. Please take a look at [Switchbru](https://www.switchbru.com/dns/).
+It is based on the [switch-gba](https://github.com/itsbjoern/switch-gba) project and replaces mGBA with **DeSmuME** for Nintendo DS emulation.
 
-  The way the Switch handles `B` is a bit different if there is an iFrame present on the page. In this case `B` will actually navigate the iFrame back first **before** navigating back the actual page (or reloading it). This is crucial for my workaround. With the use of `postMessage` I always immediately return to a "navigated" state of the iFrame.
-</details>
+This is an experimental work in progress.
 
 ---
-## Planned features
-* [Done]  NDS Games support
-* Audio support
-* Touchscreen support
-* X and Y buttons support
-* Add a button to mimic the Microphone 
-* Eventually switch to a fork of desmume that supports Wifi Connections
+
+## Project Origin
+
+This project takes advantage of a behavior in the Nintendo Switch built-in browser, which is used during certain network authentication flows (for example DNS-based captive portals such as Switchbru).
+
+Reference: https://www.switchbru.com/dns/
+
+### Technical Concept
+
+The Switch browser handles the **B button** differently when an iframe is present:
+
+- The B button first navigates inside the iframe history
+- Only then does it affect the main page navigation
+
+This behavior is used as part of the workaround implemented in this project.
+
+The system also uses `postMessage` to maintain a consistent iframe navigation state.
 
 ---
-## Usage
 
-**Windows 10/11**
-To host this emulator on Windows 10 or 11, you just need to download the latest release, extract the .zip and launch the switch-nds.exe
+## Features
 
-Keeps in mind that you can add your `.nds` roms in the `roms` folder, by default this folder is empty.
+### Implemented
+- Nintendo DS game support (.nds files)
+- ROM loading from local storage
 
-**Linux**
-Assuming you installed Python 3.10 before (Python 3.14 will not works).
+### In Progress
+- Audio emulation
+- Touchscreen input support
+- X and Y button mapping
+- Microphone emulation via a virtual button
 
-Clone this repo with the following command :
+### Planned
+- WiFi support through a DeSmuME fork with network capabilities
+
+---
+
+## Installation and Usage
+
+### Windows 10 / 11
+
+1. Download the latest release
+2. Extract the `.zip` archive
+3. Run `switch-nds.exe`
+
+Place your `.nds` ROM files inside the `roms/` folder (empty by default).
+
+---
+
+### Linux
+
+#### Requirements
+- Python 3.10 recommended (Python 3.14 is not supported)
+
+#### Setup
+
 ```bash
 git clone https://github.com/Gabriel-Chevallier/switch-nds.git
-```
-
-Go in the clone repo folder :
-```bash
 cd switch-nds
-```
 
-And you just need to runs the run.sh script :
-```bash
+pip install -r requirements.txt
+
 chmod u+x run.sh
 ./run.sh
-```
-## Versions
-
-## 1.0.0
-* Initial release
-
-## Resources
-
-Switch supported HTML features http://html5test.com/s/a77ccd45f1540617.html
